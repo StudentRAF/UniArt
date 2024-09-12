@@ -37,24 +37,24 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_role_id", nullable = false)
-    private UserRoleEntity userRole;
-
-    @Column(name = "first_name", nullable = false, length = 30)
+    @Column(name = "first_name", nullable = false, length = 32)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false, length = 30)
+    @Column(name = "last_name", nullable = false, length = 32)
     private String lastName;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 64)
     private String username;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 64)
     private String password;
 
     @Column(nullable = false)
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "user_role_id", nullable = false)
+    private UserRoleEntity userRole;
 
     private LocalDate dateOfBirth;
 
