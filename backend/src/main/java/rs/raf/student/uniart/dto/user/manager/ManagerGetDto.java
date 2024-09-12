@@ -2,12 +2,16 @@ package rs.raf.student.uniart.dto.user.manager;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import rs.raf.student.uniart.dto.user_role.UserRoleGetDto;
 
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ManagerGetDto {
 
     @JsonProperty("first_name")
