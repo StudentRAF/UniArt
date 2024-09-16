@@ -22,8 +22,10 @@ public class EditorGetDto {
     @JsonProperty("last_name")
     private String lastName;
 
+    @JsonProperty("username")
     private String username;
 
+    @JsonProperty("email")
     private String email;
 
     @JsonProperty("date_of_birth")

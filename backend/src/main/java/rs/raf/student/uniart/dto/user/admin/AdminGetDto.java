@@ -22,8 +22,10 @@ public class AdminGetDto {
     @JsonProperty("last_name")
     private String lastName;
 
+    @JsonProperty("username")
     private String username;
 
+    @JsonProperty("email")
     private String email;
 
     @JsonProperty("date_of_birth")
@@ -33,8 +35,10 @@ public class AdminGetDto {
     @JsonProperty("user_role")
     private UserRoleGetDto userRole;
 
+    @JsonProperty("access")
     private boolean access;
 
+    @JsonProperty("activated")
     private boolean activated;
 
 }

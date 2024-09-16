@@ -16,6 +16,7 @@ public class UserRoleUpdateDto {
 
     @NotBlank
     @Size(max = 32)
+    @JsonProperty("name")
     private String name;
 
     @NotBlank

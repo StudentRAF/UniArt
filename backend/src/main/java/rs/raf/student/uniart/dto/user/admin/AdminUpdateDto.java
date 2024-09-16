@@ -31,6 +31,7 @@ public class AdminUpdateDto {
 
     @NotBlank
     @Size(max = 64)
+    @JsonProperty("username")
     private String username;
 
     @NotBlank
@@ -40,11 +41,13 @@ public class AdminUpdateDto {
 
     @NotBlank
     @Size(min = 8, max = 64)
+    @JsonProperty("password")
     private String password;
 
     @NotBlank
     @Email
     @Size(min = 1, max = 256)
+    @JsonProperty("email")
     private String email;
 
     @JsonProperty("date_of_birth")
@@ -55,6 +58,7 @@ public class AdminUpdateDto {
     private String userRole;
 
     @NotNull
+    @JsonProperty("access")
     private boolean access;
 
 }

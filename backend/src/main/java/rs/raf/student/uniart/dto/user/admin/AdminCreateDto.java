@@ -30,16 +30,19 @@ public class AdminCreateDto {
 
     @NotBlank
     @Size(max = 64)
+    @JsonProperty("username")
     private String username;
 
     //NOTE: Should be removed in the future
     @NotBlank
     @Size(min = 8, max = 64)
+    @JsonProperty("password")
     private String password;
 
     @NotBlank
     @Email
     @Size(min = 1, max = 256)
+    @JsonProperty("email")
     private String email;
 
     @JsonProperty("date_of_birth")

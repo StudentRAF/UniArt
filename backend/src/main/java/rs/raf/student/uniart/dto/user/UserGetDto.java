@@ -18,8 +18,10 @@ public class UserGetDto {
     @JsonProperty("last_name")
     private String lastName;
 
+    @JsonProperty("username")
     private String username;
 
+    @JsonProperty("email")
     private String email;
 
 }

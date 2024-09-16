@@ -1,5 +1,6 @@
 package rs.raf.student.uniart.dto.user_role;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ public class UserRoleCreateDto {
 
     @NotBlank
     @Size(max = 32)
+    @JsonProperty("name")
     private String name;
 
 }
