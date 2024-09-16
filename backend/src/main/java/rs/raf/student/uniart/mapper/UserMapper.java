@@ -6,6 +6,7 @@ import rs.raf.student.uniart.dto.user.admin.AdminCreateDto;
 import rs.raf.student.uniart.dto.user.admin.AdminGetDto;
 import rs.raf.student.uniart.dto.user.admin.AdminUpdateDto;
 import rs.raf.student.uniart.dto.user.editor.EditorGetDto;
+import rs.raf.student.uniart.dto.user.editor.EditorUpdateDto;
 import rs.raf.student.uniart.dto.user.manager.ManagerCreateDto;
 import rs.raf.student.uniart.dto.user.manager.ManagerGetDto;
 import rs.raf.student.uniart.dto.user.manager.ManagerUpdateDto;
@@ -16,6 +17,15 @@ import rs.raf.student.uniart.utils.PasswordUtilities;
 
 @ExtensionMethod({UserRoleMapper.class})
 public class UserMapper {
+
+    public static User map(User user, EditorUpdateDto updateDto) {
+        return user.firstName(updateDto.firstName())
+                   .lastName(updateDto.lastName())
+                   .username(updateDto.username())
+                   .email(updateDto.email())
+                   .password(PasswordUtilities.hashPassword(updateDto.password(), user.salt()))
+                   .dateOfBirth(updateDto.dateOfBirth());
+    }
 
     public static User map(User user, ManagerUpdateDto updateDto) {
         return user.firstName(updateDto.firstName())
