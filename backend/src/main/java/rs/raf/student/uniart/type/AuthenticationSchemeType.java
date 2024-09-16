@@ -24,6 +24,10 @@ public enum AuthenticationSchemeType {
 
     private final String name;
 
+    public String addCredentials(String credentials) {
+        return name + " " + credentials;
+    }
+
     @Override
     public String toString() {
         return name;

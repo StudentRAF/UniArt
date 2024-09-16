@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Configuration {
 
+    //region Properties
+
     @Component
     @Accessors(fluent = true)
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -60,5 +62,56 @@ public class Configuration {
         }
 
     }
+
+    //endregion Properties
+
+    //region Controller
+
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class Controller {
+
+        @NoArgsConstructor(access = AccessLevel.PRIVATE)
+        public static class Mapping {
+
+            @NoArgsConstructor(access = AccessLevel.PRIVATE)
+            public static class Admin {
+
+                public static final String ROOT     = "/admin";
+                public static final String REGISTER = "/register";
+                public static final String UPDATE   = "/update";
+            }
+
+            @NoArgsConstructor(access = AccessLevel.PRIVATE)
+            public static class Editor {
+
+                public static final String ROOT   = "/editor";
+                public static final String UPDATE = "/update";
+
+            }
+
+            @NoArgsConstructor(access = AccessLevel.PRIVATE)
+            public static class Manager {
+
+                public static final String ROOT     = "/manager";
+                public static final String REGISTER = "/register";
+                public static final String UPDATE   = "/update";
+
+            }
+
+            @NoArgsConstructor(access = AccessLevel.PRIVATE)
+            public static class User {
+
+                public static final String ROOT            = "/user";
+                public static final String GET_ALL         = "/all";
+                public static final String GET_BY_USERNAME = "/user_{username}";
+                public static final String LOGIN           = "/login";
+
+            }
+
+        }
+
+    }
+
+    //endregion Controller
 
 }
