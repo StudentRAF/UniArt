@@ -50,8 +50,11 @@ public class UserEntity {
     @Column(nullable = false, length = 64)
     private String username;
 
-    @Column(nullable = false, length = 64)
+    @Column(nullable = false, length = 44)
     private String password;
+
+    @Column(nullable = false, length = 24)
+    private String salt;
 
     @Column(nullable = false)
     private String email;
