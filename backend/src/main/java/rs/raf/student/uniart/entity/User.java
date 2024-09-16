@@ -35,7 +35,7 @@ import java.time.LocalDateTime;
         @UniqueConstraint(name = "unique_user_on_username", columnNames = { "username" }),
     }
 )
-public class UserEntity {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +61,7 @@ public class UserEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_role_id", nullable = false)
-    private UserRoleEntity userRole;
+    private UserRole userRole;
 
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;

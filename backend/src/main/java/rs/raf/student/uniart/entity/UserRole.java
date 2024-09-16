@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
     indexes = @Index(name = "index_user_role_on_name", columnList = "name"),
     uniqueConstraints = @UniqueConstraint(name = "unique_user_role_on_name", columnNames = { "name" })
 )
-public class UserRoleEntity {
+public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
