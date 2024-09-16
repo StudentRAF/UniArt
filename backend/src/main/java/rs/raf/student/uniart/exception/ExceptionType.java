@@ -30,7 +30,40 @@ public enum ExceptionType implements IException {
      */
     GENERATE_AUTHORIZATION_TOKEN_NOT_FOUND_AUTHENTICATED_USER("""
                                                               Could not generate authentication token. There is no authenticated user.\
-                                                              """, Severity.DEBUG, HttpStatus.UNAUTHORIZED)
+                                                              """, Severity.DEBUG, HttpStatus.UNAUTHORIZED),
+    /**
+     * Invoke when there is no <code>UserRole</code> with <code>name</code>.<br><br>
+     * Arguments order:
+     * <ol>
+     *   <li><code>UserRole.name</code></li>
+     * </ol><br>
+     * Severity: <code>Debug</code> | HttpStatus: <code>Bad Request</code>
+     */
+    CREATE_USER_NOT_FOUND_USER_ROLE("""
+                                          Could not create user. User role with name "{0}" does not exist.\
+                                          """, Severity.DEBUG, HttpStatus.BAD_REQUEST),
+    /**
+     * Invoke when there is no <code>UserRole</code> with <code>name</code>.<br><br>
+     * Arguments order:
+     * <ol>
+     *   <li><code>UserRole.name</code></li>
+     * </ol><br>
+     * Severity: <code>Debug</code> | HttpStatus: <code>Bad Request</code>
+     */
+    UPDATE_USER_NOT_FOUND_USER_ROLE("""
+                                          Could not update user. User role with name "{0}" does not exist.\
+                                          """, Severity.DEBUG, HttpStatus.BAD_REQUEST),
+    /**
+     * Invoke when there is no <code>User</code> with <code>username</code>.<br><br>
+     * Arguments order:
+     * <ol>
+     *   <li><code>User.username</code></li>
+     * </ol><br>
+     * Severity: <code>Debug</code> | HttpStatus: <code>Bad Request</code>
+     */
+    UPDATE_USER_NOT_FOUND_USERNAME("""
+                                         Could not update user. User with username "{0}" does not exist.\
+                                         """, Severity.DEBUG, HttpStatus.BAD_REQUEST),
 
     //endregion User Service
     ;
