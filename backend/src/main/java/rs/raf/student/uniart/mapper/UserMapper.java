@@ -6,7 +6,9 @@ import rs.raf.student.uniart.dto.user.admin.AdminCreateDto;
 import rs.raf.student.uniart.dto.user.admin.AdminGetDto;
 import rs.raf.student.uniart.dto.user.admin.AdminUpdateDto;
 import rs.raf.student.uniart.dto.user.editor.EditorGetDto;
+import rs.raf.student.uniart.dto.user.manager.ManagerCreateDto;
 import rs.raf.student.uniart.dto.user.manager.ManagerGetDto;
+import rs.raf.student.uniart.dto.user.manager.ManagerUpdateDto;
 import rs.raf.student.uniart.entity.User;
 import rs.raf.student.uniart.entity.UserRole;
 import rs.raf.student.uniart.type.UserRoleType;
@@ -15,12 +17,37 @@ import rs.raf.student.uniart.utils.PasswordUtilities;
 @ExtensionMethod({UserRoleMapper.class})
 public class UserMapper {
 
+    public static User map(User user, ManagerUpdateDto updateDto) {
+        return user.firstName(updateDto.firstName())
+                   .lastName(updateDto.lastName())
+                   .username(updateDto.username())
+                   .email(updateDto.email())
+                   .password(PasswordUtilities.hashPassword(updateDto.password(), user.salt()))
+                   .dateOfBirth(updateDto.dateOfBirth());
+    }
+
+    public static User map(User user, ManagerCreateDto createDto) {
+        String salt = PasswordUtilities.generateSalt();
+
+        return user.firstName(createDto.firstName())
+                   .lastName(createDto.lastName())
+                   .username(createDto.username())
+                   .email(createDto.email())
+                   .password(PasswordUtilities.hashPassword(createDto.password(), salt))
+                   .salt(salt)
+                   .dateOfBirth(createDto.dateOfBirth());
+    }
+
+    public static User mapEntity(ManagerCreateDto createDto) {
+        return map(new User(), createDto);
+    }
+
     public static User map(User user, AdminUpdateDto updateDto) {
         return user.firstName(updateDto.firstName())
                    .lastName(updateDto.lastName())
                    .username(updateDto.username())
                    .email(updateDto.email())
-                   .password(updateDto.password())
+                   .password(PasswordUtilities.hashPassword(updateDto.password(), user.salt()))
                    .dateOfBirth(updateDto.dateOfBirth())
                    .access(updateDto.access());
     }
