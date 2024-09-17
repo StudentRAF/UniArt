@@ -24,7 +24,7 @@ public class SecurityAuthenticationManager implements AuthenticationManager {
         return getProviderManager().authenticate(authentication);
     }
 
-    private ProviderManager getProviderManager() {
+    private ProviderManager getProviderManager() { //TODO: it might need to always return new ProviderManager
         if (providerManager == null)
             providerManager = new ProviderManager(List.of(usernamePasswordSaltAuthenticationProvider()));
 
