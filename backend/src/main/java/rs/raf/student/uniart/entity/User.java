@@ -12,7 +12,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,12 +21,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Set;
 
-@Data
 @Entity
 @Accessors(fluent = true, chain = true)
 @EntityListeners(AuditingEntityListener.class)
@@ -100,6 +100,163 @@ public class User implements UserDetails {
     @Column(name = Meta.Column.MODIFIED_AT, nullable = false)
     private LocalDateTime modifiedAt;
 
+    //region Constructors
+
+    public User() { }
+
+    public User(Long id, String firstName, String lastName, String username, String password, String salt, String email, UserRole userRole,
+                LocalDate dateOfBirth, boolean access, boolean activated, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        setId(id);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setUsername(username);
+        setPassword(password);
+        setSalt(salt);
+        setEmail(email);
+        setUserRole(userRole);
+        setDateOfBirth(dateOfBirth);
+        setAccess(access);
+        setActivated(activated);
+        setCreatedAt(createdAt);
+        setModifiedAt(modifiedAt);
+    }
+
+    //endregion Constructors
+
+    //region Data
+
+    public User setId(Long id) {
+        this.id = id;
+
+        return this;
+    }
+
+    public Long id() {
+        return id;
+    }
+
+    public User setFirstName(String firstName) {
+        this.firstName = firstName;
+
+        return this;
+    }
+
+    public String firstName() {
+        return firstName;
+    }
+
+    public User setLastName(String lastName) {
+        this.lastName = lastName;
+
+        return this;
+    }
+
+    public String lastName() {
+        return lastName;
+    }
+
+    public User setUsername(String username) {
+        this.username = username;
+
+        return this;
+    }
+
+    public String username() {
+        return username;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+
+        return this;
+    }
+
+    public String password() {
+        return password;
+    }
+
+    public User setSalt(String salt) {
+        this.salt = salt;
+
+        return this;
+    }
+
+    public String salt() {
+        return salt;
+    }
+
+    public User setEmail(String email) {
+        this.email = email;
+
+        return this;
+    }
+
+    public String email() {
+        return email;
+    }
+
+    public User setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+
+        return this;
+    }
+
+    public UserRole userRole() {
+        return userRole;
+    }
+
+    public User setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+
+        return this;
+    }
+
+    public LocalDate dateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public User setAccess(boolean access) {
+        this.access = access;
+
+        return this;
+    }
+
+    public boolean access() {
+        return access;
+    }
+
+    public User setActivated(boolean activated) {
+        this.activated = activated;
+
+        return this;
+    }
+
+    public boolean activated() {
+        return activated;
+    }
+
+    public User setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+
+        return this;
+    }
+
+    public LocalDateTime createdAt() {
+        return createdAt;
+    }
+
+    public User setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+
+        return this;
+    }
+
+    public LocalDateTime modifiedAt() {
+        return modifiedAt;
+    }
+
+    //endregion Data
+    
     //region UserDetails
 
     @Override
@@ -129,6 +286,43 @@ public class User implements UserDetails {
 
     //endregion UserDetails
 
+    //region Object
+
+    public boolean equals(final Object object) {
+        if (object == this)
+            return true;
+
+        if (object instanceof User user)
+            return Objects.equals(user.id, id)               &&
+                   Objects.equals(user.salt, salt)           &&
+                   Objects.equals(user.email, email)         &&
+                   Objects.equals(user.access, access)       &&
+                   Objects.equals(user.lastName, lastName)   &&
+                   Objects.equals(user.password, password)   &&
+                   Objects.equals(user.username, username)   &&
+                   Objects.equals(user.userRole, userRole)   &&
+                   Objects.equals(user.activated, activated) &&
+                   Objects.equals(user.firstName, firstName) &&
+                   Objects.equals(user.dateOfBirth, dateOfBirth);
+
+        return false;
+    }
+
+    public int hashCode() {
+        return Objects.hash(id, salt, email, access, lastName, password, username, userRole, activated, firstName, dateOfBirth);
+    }
+
+    public String toString() {
+        return MessageFormat.format("""
+                                    User: '{' id = {0} | firstName = {1} | lastName = {2} | username = {3} | password = {4} | salt = {5} |\
+                                    email = {6} | userRole = {7} | dateOfBirth = {8} | access = {9} | activated = {10} | createdAt = {11} |\
+                                    modifiedAt = {12} '}'\
+                                    """, id, firstName, lastName, username, password, salt, email, userRole, dateOfBirth, access, activated,
+                                    createdAt, modifiedAt);
+    }
+    
+    //endregion Object
+    
     //region Meta
 
     @NoArgsConstructor(access = AccessLevel.PRIVATE)

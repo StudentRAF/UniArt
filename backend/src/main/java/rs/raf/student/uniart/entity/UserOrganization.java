@@ -12,16 +12,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-@Data
 @Entity
 @Accessors(fluent = true, chain = true)
 @EntityListeners(AuditingEntityListener.class)
@@ -69,6 +69,102 @@ public class UserOrganization {
     @LastModifiedDate
     @Column(name = Meta.Column.MODIFIED_AT, nullable = false)
     private LocalDateTime modifiedAt;
+
+    //region Constructors
+
+    public UserOrganization() { }
+
+    public UserOrganization(Long id, User user, Organization organization, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        setId(id);
+        setUser(user);
+        setOrganization(organization);
+        setCreatedAt(createdAt);
+        setModifiedAt(modifiedAt);
+    }
+
+    //endregion Constructors
+
+    //region Data
+
+    public UserOrganization setId(Long id) {
+        this.id = id;
+
+        return this;
+    }
+
+    public Long id() {
+        return id;
+    }
+
+    public UserOrganization setUser(User user) {
+        this.user = user;
+
+        return this;
+    }
+
+    public User user() {
+        return user;
+    }
+
+    public UserOrganization setOrganization(Organization organization) {
+        this.organization = organization;
+
+        return this;
+    }
+
+    public Organization organization() {
+        return organization;
+    }
+
+    public UserOrganization setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+
+        return this;
+    }
+
+    public LocalDateTime createdAt() {
+        return createdAt;
+    }
+
+    public UserOrganization setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+
+        return this;
+    }
+
+    public LocalDateTime modifiedAt() {
+        return modifiedAt;
+    }
+
+    //endregion Data
+
+    //region Object
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this)
+            return true;
+
+        if (object instanceof UserOrganization userOrganization)
+            return Objects.equals(userOrganization.id, id)     &&
+                   Objects.equals(userOrganization.user, user) &&
+                   Objects.equals(userOrganization.organization, organization);
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, organization);
+    }
+
+    public String toString() {
+        return MessageFormat.format("""
+                                    UserOrganization: '{' id = {0} | user = {1} | organization = {2} | createdAt = {3} | modifiedAt = {4} '}'\
+                                    """, id, user, organization, createdAt, modifiedAt);
+    }
+
+    //endregion Object
 
     //region Meta
 

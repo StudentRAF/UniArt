@@ -17,7 +17,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Data
 @Entity
@@ -55,6 +57,88 @@ public class Organization {
     @LastModifiedDate
     @Column(name = Meta.Column.MODIFIED_AT, nullable = false)
     private LocalDateTime modifiedAt;
+
+    //region Constructors
+
+    public Organization() { }
+
+    public Organization(Long id, String name, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        setId(id);
+        setName(name);
+        setCreatedAt(createdAt);
+        setModifiedAt(modifiedAt);
+    }
+
+    //endregion Constructors
+
+    //region Data
+
+    public Organization setId(Long id) {
+        this.id = id;
+
+        return this;
+    }
+
+    public Long id() {
+        return id;
+    }
+
+    public Organization setName(String name) {
+        this.name = name;
+
+        return this;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public Organization setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+
+        return this;
+    }
+
+    public LocalDateTime createdAt() {
+        return createdAt;
+    }
+
+    public Organization setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+
+        return this;
+    }
+
+    public LocalDateTime modifiedAt() {
+        return modifiedAt;
+    }
+
+    //endregion Data
+
+    //region Object
+
+    public boolean equals(final Object object) {
+        if (object == this)
+            return true;
+
+        if (object instanceof Organization organization)
+            return Objects.equals(organization.id, id) &&
+                   Objects.equals(organization.name, name);
+
+        return false;
+    }
+
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
+
+    public String toString() {
+        return MessageFormat.format("""
+                                    Organization: '{' id = {0} | name = {1} | createdAt = {2} | modifiedAt = {3} '}'\
+                                    """, id, name, createdAt, modifiedAt);
+    }
+
+    //endregion Object
 
     //region Meta
 

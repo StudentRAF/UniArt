@@ -10,16 +10,16 @@ import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-@Data
 @Entity
 @Accessors(fluent = true, chain = true)
 @EntityListeners(AuditingEntityListener.class)
@@ -51,6 +51,90 @@ public class UserRole {
     @LastModifiedDate
     @Column(name = Meta.Column.MODIFIED_AT, nullable = false)
     private LocalDateTime modifiedAt;
+
+    //region Constructors
+
+    public UserRole() { }
+
+    public UserRole(Long id, String name, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        setId(id);
+        setName(name);
+        setCreatedAt(createdAt);
+        setModifiedAt(modifiedAt);
+    }
+
+    //endregion Constructors
+
+    //region Data
+
+    public UserRole setId(Long id) {
+        this.id = id;
+
+        return this;
+    }
+
+    public Long id() {
+        return id;
+    }
+
+    public UserRole setName(String name) {
+        this.name = name;
+
+        return this;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public UserRole setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+
+        return this;
+    }
+
+    public LocalDateTime createdAt() {
+        return createdAt;
+    }
+
+    public UserRole setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+
+        return this;
+    }
+
+    public LocalDateTime modifiedAt() {
+        return modifiedAt;
+    }
+
+    //endregion Data
+
+    //region Object
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this)
+            return true;
+
+        if (object instanceof UserRole role)
+            return Objects.equals(role.id, id) &&
+                   Objects.equals(role.name, name);
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
+
+    public String toString() {
+        return MessageFormat.format("""
+                                    UserRole: '{' id = {0} | name = {1} | createdAt = {2} | modifiedAt = {3} '}'\
+                                    """, id, name, createdAt, modifiedAt);
+    }
+
+    //endregion Object
 
     //region Meta
 

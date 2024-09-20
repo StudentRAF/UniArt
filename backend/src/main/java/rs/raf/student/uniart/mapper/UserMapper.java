@@ -19,33 +19,33 @@ import rs.raf.student.uniart.utils.PasswordUtilities;
 public class UserMapper {
 
     public static User map(User user, EditorUpdateDto updateDto) {
-        return user.firstName(updateDto.firstName())
-                   .lastName(updateDto.lastName())
-                   .username(updateDto.username())
-                   .email(updateDto.email())
-                   .password(PasswordUtilities.hashPassword(updateDto.password(), user.salt()))
-                   .dateOfBirth(updateDto.dateOfBirth());
+        return user.setFirstName(updateDto.firstName())
+                   .setLastName(updateDto.lastName())
+                   .setUsername(updateDto.username())
+                   .setEmail(updateDto.email())
+                   .setPassword(PasswordUtilities.hashPassword(updateDto.password(), user.salt()))
+                   .setDateOfBirth(updateDto.dateOfBirth());
     }
 
     public static User map(User user, ManagerUpdateDto updateDto) {
-        return user.firstName(updateDto.firstName())
-                   .lastName(updateDto.lastName())
-                   .username(updateDto.username())
-                   .email(updateDto.email())
-                   .password(PasswordUtilities.hashPassword(updateDto.password(), user.salt()))
-                   .dateOfBirth(updateDto.dateOfBirth());
+        return user.setFirstName(updateDto.firstName())
+                   .setLastName(updateDto.lastName())
+                   .setUsername(updateDto.username())
+                   .setEmail(updateDto.email())
+                   .setPassword(PasswordUtilities.hashPassword(updateDto.password(), user.salt()))
+                   .setDateOfBirth(updateDto.dateOfBirth());
     }
 
     public static User map(User user, ManagerCreateDto createDto) {
         String salt = PasswordUtilities.generateSalt();
 
-        return user.firstName(createDto.firstName())
-                   .lastName(createDto.lastName())
-                   .username(createDto.username())
-                   .email(createDto.email())
-                   .password(PasswordUtilities.hashPassword(createDto.password(), salt))
-                   .salt(salt)
-                   .dateOfBirth(createDto.dateOfBirth());
+        return user.setFirstName(createDto.firstName())
+                   .setLastName(createDto.lastName())
+                   .setUsername(createDto.username())
+                   .setEmail(createDto.email())
+                   .setPassword(PasswordUtilities.hashPassword(createDto.password(), salt))
+                   .setSalt(salt)
+                   .setDateOfBirth(createDto.dateOfBirth());
     }
 
     public static User mapEntity(ManagerCreateDto createDto) {
@@ -53,25 +53,25 @@ public class UserMapper {
     }
 
     public static User map(User user, AdminUpdateDto updateDto) {
-        return user.firstName(updateDto.firstName())
-                   .lastName(updateDto.lastName())
-                   .username(updateDto.username())
-                   .email(updateDto.email())
-                   .password(PasswordUtilities.hashPassword(updateDto.password(), user.salt()))
-                   .dateOfBirth(updateDto.dateOfBirth())
-                   .access(updateDto.access());
+        return user.setFirstName(updateDto.firstName())
+                   .setLastName(updateDto.lastName())
+                   .setUsername(updateDto.username())
+                   .setEmail(updateDto.email())
+                   .setPassword(PasswordUtilities.hashPassword(updateDto.password(), user.salt()))
+                   .setDateOfBirth(updateDto.dateOfBirth())
+                   .setAccess(updateDto.access());
     }
 
     public static User map(User user, AdminCreateDto createDto) {
         String salt = PasswordUtilities.generateSalt();
 
-        return user.firstName(createDto.firstName())
-                   .lastName(createDto.lastName())
-                   .username(createDto.username())
-                   .email(createDto.email())
-                   .password(PasswordUtilities.hashPassword(createDto.password(), salt))
-                   .salt(salt)
-                   .dateOfBirth(createDto.dateOfBirth());
+        return user.setFirstName(createDto.firstName())
+                   .setLastName(createDto.lastName())
+                   .setUsername(createDto.username())
+                   .setEmail(createDto.email())
+                   .setPassword(PasswordUtilities.hashPassword(createDto.password(), salt))
+                   .setSalt(salt)
+                   .setDateOfBirth(createDto.dateOfBirth());
     }
 
     public static User mapEntity(AdminCreateDto createDto) {
@@ -79,7 +79,7 @@ public class UserMapper {
     }
 
     public static User map(User user, UserRole userRole) {
-        user.userRole(userRole);
+        user.setUserRole(userRole);
 
         return user;
     }
