@@ -11,7 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -24,35 +26,75 @@ import java.time.LocalDateTime;
 @Accessors(fluent = true, chain = true)
 @EntityListeners(AuditingEntityListener.class)
 @Table(
-    name = "user_organization",
+    name = UserOrganization.Meta.Table.NAME,
     indexes = {
-        @Index(name = "index_user_organization_on_user", columnList = "user_id"),
-        @Index(name = "index_user_organization_on_organization", columnList = "organization_id"),
+        @Index(
+            name = "index_user_organization_on_user",
+            columnList = UserOrganization.Meta.Column.USER
+        ),
+        @Index(
+            name = "index_user_organization_on_organization",
+            columnList = UserOrganization.Meta.Column.ORGANIZATION
+        ),
     },
     uniqueConstraints = {
-        @UniqueConstraint(name = "unique_user_organization_on_user_and_organization", columnNames = { "user_id", "organization_id" }),
+        @UniqueConstraint(
+            name = "unique_user_organization_on_user_and_organization",
+            columnNames = {
+                UserOrganization.Meta.Column.USER,
+                UserOrganization.Meta.Column.ORGANIZATION
+            }
+        ),
     }
 )
 public class UserOrganization {
 
     @Id
+    @Column(name = Meta.Column.IDENTIFIER)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = Meta.Column.USER, nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "organization_id", nullable = false)
+    @JoinColumn(name = Meta.Column.ORGANIZATION, nullable = false)
     private Organization organization;;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = Meta.Column.CREATED_AT, nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "modified_at", nullable = false)
+    @Column(name = Meta.Column.MODIFIED_AT, nullable = false)
     private LocalDateTime modifiedAt;
+
+    //region Meta
+
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class Meta {
+
+        @NoArgsConstructor(access = AccessLevel.PRIVATE)
+        public static class Table {
+
+            public static final String NAME = "user_organization";
+
+        }
+
+        @NoArgsConstructor(access = AccessLevel.PRIVATE)
+        public static class Column {
+
+            public static final String IDENTIFIER   = "id";
+            public static final String USER         = "user_id";
+            public static final String ORGANIZATION = "organization_id";
+            public static final String CREATED_AT   = "created_at";
+            public static final String MODIFIED_AT  = "modified_at";
+
+        }
+
+    }
+
+    //endregion Meta
 
 }

@@ -11,7 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -24,36 +26,77 @@ import java.time.LocalDateTime;
 @Accessors(fluent = true, chain = true)
 @EntityListeners(AuditingEntityListener.class)
 @Table(
-    name = "project",
+    name = Project.Meta.Table.NAME,
     indexes = {
-        @Index(name = "index_project_on_name", columnList = "name"),
-        @Index(name = "index_project_on_organization", columnList = "organization_id"),
+        @Index(
+            name = "index_project_on_name",
+            columnList = Project.Meta.Column.NAME
+        ),
+        @Index(
+            name = "index_project_on_organization",
+            columnList = Project.Meta.Column.ORGANIZATION
+        ),
     },
     uniqueConstraints = {
-        @UniqueConstraint(name = "unique_project_on_name_and_organization", columnNames = { "name", "organization_id" }),
+        @UniqueConstraint(
+            name = "unique_project_on_name_and_organization",
+            columnNames = {
+                Project.Meta.Column.NAME,
+                Project.Meta.Column.ORGANIZATION
+            }
+        ),
     }
 )
 public class Project {
 
     @Id
+    @Column(name = Meta.Column.IDENTIFIER)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 64)
+    @Column(name = Meta.Column.NAME, nullable = false, length = 64)
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "organization_id", nullable = false)
+    @JoinColumn(name = Meta.Column.ORGANIZATION, nullable = false)
     private Organization organization;
 
     //TODO: add document that is saved as jsonb
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = Meta.Column.CREATED_AT, nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "modified_at", nullable = false)
+    @Column(name = Meta.Column.MODIFIED_AT, nullable = false)
     private LocalDateTime modifiedAt;
+
+    //region Meta
+
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class Meta {
+
+        @NoArgsConstructor(access = AccessLevel.PRIVATE)
+        public static class Table {
+
+            public static final String NAME = "project";
+
+        }
+
+        @NoArgsConstructor(access = AccessLevel.PRIVATE)
+        public static class Column {
+
+            public static final String IDENTIFIER   = "id";
+            public static final String NAME         = "name";
+            public static final String ORGANIZATION = "organization_id";
+            public static final String DOCUMENT     = "document";
+            public static final String CREATED_AT   = "created_at";
+            public static final String MODIFIED_AT  = "modified_at";
+
+        }
+
+    }
+
+    //endregion Meta
 
 }
