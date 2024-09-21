@@ -110,6 +110,18 @@ public class Configuration {
             }
 
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
+            public static class Project {
+
+                public static final String ROOT                    = "/project";
+                public static final String GET_ALL                 = "/all";
+                public static final String GET_ALL_BY_ORGANIZATION = "/org_{organization}";
+                public static final String GET_BY_NAME             = "/project_{name}_{organization}";
+                public static final String REGISTER                = "/register";
+                public static final String UPDATE                  = "/update";
+
+            }
+
+            @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class User {
 
                 public static final String ROOT            = "/user";

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import rs.raf.student.uniart.entity.Organization;
+import rs.raf.student.uniart.entity.Project;
 
 @AllArgsConstructor
 public enum ExceptionType implements IException {
@@ -34,6 +35,46 @@ public enum ExceptionType implements IException {
                                        """, Severity.DEBUG, HttpStatus.BAD_REQUEST),
 
     //endregion Organization Service
+
+    //region Project Service
+
+    /**
+     * Invoke when there is no <code>Project</code> with <code>name</code>.<br><br>
+     * Arguments order:
+     * <ol>
+     *   <li>{@link Project#name Project.name()}</li>
+     *   <li>{@link Project#organization Project.organization().name()}</li>
+     * </ol><br>
+     * Severity: <code>Debug</code> | HttpStatus: <code>Bad Request</code>
+     */
+    FIND_PROJECT_NOT_FOUND_NAME_OR_ORGANIZATION("""
+                                                Could not find project. Project with name "{0}" and organization name "{1}" does not exist.\
+                                                """, Severity.DEBUG, HttpStatus.BAD_REQUEST),
+    /**
+     * Invoke when there is no <code>Project</code> with <code>organization</code>.<br><br>
+     * Arguments order:
+     * <ol>
+     *   <li>{@link Project#organization Project.organization()}</li>
+     * </ol><br>
+     * Severity: <code>Debug</code> | HttpStatus: <code>Bad Request</code>
+     */
+    CREATE_PROJECT_NOT_FOUND_ORGANIZATION("""
+                                          Could not create project. Organization with name "{0}" does not exist.\
+                                          """, Severity.DEBUG, HttpStatus.BAD_REQUEST),
+    /**
+     * Invoke when there is no <code>Project</code> with <code>name</code>.<br><br>
+     * Arguments order:
+     * <ol>
+     *   <li>{@link Project#name Project.name()}</li>
+     *   <li>{@link Project#organization Project.organization().name()}</li>
+     * </ol><br>
+     * Severity: <code>Debug</code> | HttpStatus: <code>Bad Request</code>
+     */
+    UPDATE_PROJECT_NOT_FOUND_NAME_OR_ORGANIZATION("""
+                                                  Could not update project. Project with name "{0}" and organization name "{1}" does not exist.\
+                                                  """, Severity.DEBUG, HttpStatus.BAD_REQUEST),
+
+    //endregion Project Service
 
     //region User Service
 
