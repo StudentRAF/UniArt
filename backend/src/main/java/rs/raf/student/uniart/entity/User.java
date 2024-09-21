@@ -314,11 +314,12 @@ public class User implements UserDetails {
 
     public String toString() {
         return MessageFormat.format("""
-                                    User: '{' id = {0} | firstName = {1} | lastName = {2} | username = {3} | password = {4} | salt = {5} |\
-                                    email = {6} | userRole = {7} | dateOfBirth = {8} | access = {9} | activated = {10} | createdAt = {11} |\
-                                    modifiedAt = {12} '}'\
-                                    """, id, firstName, lastName, username, password, salt, email, userRole, dateOfBirth, access, activated,
-                                    createdAt, modifiedAt);
+                                    {0}: '{' id = {1} | firstName = {2} | lastName = {3} | username = {4} | password = {5} | salt = {6} | \
+                                    email = {7} | userRole = {8} | dateOfBirth = {9} | access = {10} | activated = {11} | createdAt = {12} | \
+                                    modifiedAt = {13} '}'\
+                                    """,
+                                    User.class.getSimpleName(), id, firstName, lastName, username, password, salt, email, userRole, dateOfBirth,
+                                    access, activated, createdAt, modifiedAt);
     }
     
     //endregion Object

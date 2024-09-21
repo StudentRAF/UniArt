@@ -160,8 +160,9 @@ public class UserOrganization {
 
     public String toString() {
         return MessageFormat.format("""
-                                    UserOrganization: '{' id = {0} | user = {1} | organization = {2} | createdAt = {3} | modifiedAt = {4} '}'\
-                                    """, id, user, organization, createdAt, modifiedAt);
+                                    {0}: '{' id = {1} | user = {2} | organization = {3} | createdAt = {4} | modifiedAt = {5} '}'\
+                                    """,
+                                    UserOrganization.class.getSimpleName(), id, user, organization, createdAt, modifiedAt);
     }
 
     //endregion Object

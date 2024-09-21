@@ -159,8 +159,9 @@ public class Project {
 
     public String toString() {
         return MessageFormat.format("""
-                                    Project: '{' id = {0} | name = {1} | organization = {2} | createdAt = {3} | modifiedAt = {4} '}'\
-                                    """, id, name, organization, createdAt, modifiedAt);
+                                    {0}: '{' id = {1} | name = {2} | organization = {3} | createdAt = {4} | modifiedAt = {5} '}'\
+                                    """,
+                                    Project.class.getSimpleName(), id, name, organization, createdAt, modifiedAt);
     }
 
     //endregion Object

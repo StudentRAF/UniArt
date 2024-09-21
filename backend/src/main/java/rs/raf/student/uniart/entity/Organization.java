@@ -134,8 +134,9 @@ public class Organization {
 
     public String toString() {
         return MessageFormat.format("""
-                                    Organization: '{' id = {0} | name = {1} | createdAt = {2} | modifiedAt = {3} '}'\
-                                    """, id, name, createdAt, modifiedAt);
+                                    {0}: '{' id = {1} | name = {2} | createdAt = {3} | modifiedAt = {4} '}'\
+                                    """,
+                                    Organization.class.getSimpleName(), id, name, createdAt, modifiedAt);
     }
 
     //endregion Object
