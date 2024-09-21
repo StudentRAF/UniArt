@@ -93,33 +93,33 @@ public class UserMapper {
             return null;
 
         return switch (permission) {
-            case ADMIN -> new AdminGetDto().firstName(user.firstName())
-                                           .lastName(user.lastName())
-                                           .username(user.username())
-                                           .email(user.email())
-                                           .dateOfBirth(user.dateOfBirth())
-                                           .userRole(user.userRole().mapDto())
-                                           .access(user.access())
-                                           .activated(user.activated());
+            case ADMIN -> new AdminGetDto().setFirstName(user.firstName())
+                                           .setLastName(user.lastName())
+                                           .setUsername(user.username())
+                                           .setEmail(user.email())
+                                           .setDateOfBirth(user.dateOfBirth())
+                                           .setUserRole(user.userRole().mapDto())
+                                           .setAccess(user.access())
+                                           .setActivated(user.activated());
 
-            case MANAGER -> new ManagerGetDto().firstName(user.firstName())
-                                               .lastName(user.lastName())
-                                               .username(user.username())
-                                               .email(user.email())
-                                               .dateOfBirth(user.dateOfBirth())
-                                               .userRole(user.userRole().mapDto());
+            case MANAGER -> new ManagerGetDto().setFirstName(user.firstName())
+                                               .setLastName(user.lastName())
+                                               .setUsername(user.username())
+                                               .setEmail(user.email())
+                                               .setDateOfBirth(user.dateOfBirth())
+                                               .setUserRole(user.userRole().mapDto());
 
-            case EDITOR -> new EditorGetDto().firstName(user.firstName())
-                                             .lastName(user.lastName())
-                                             .username(user.username())
-                                             .email(user.email())
-                                             .dateOfBirth(user.dateOfBirth())
-                                             .userRole(user.userRole().mapDto());
+            case EDITOR -> new EditorGetDto().setFirstName(user.firstName())
+                                             .setLastName(user.lastName())
+                                             .setUsername(user.username())
+                                             .setEmail(user.email())
+                                             .setDateOfBirth(user.dateOfBirth())
+                                             .setUserRole(user.userRole().mapDto());
 
-            case VIEWER -> new UserGetDto().firstName(user.firstName())
-                                           .lastName(user.lastName())
-                                           .username(user.username())
-                                           .email(user.email());
+            case VIEWER -> new UserGetDto().setFirstName(user.firstName())
+                                           .setLastName(user.lastName())
+                                           .setUsername(user.username())
+                                           .setEmail(user.email());
         };
     }
 
