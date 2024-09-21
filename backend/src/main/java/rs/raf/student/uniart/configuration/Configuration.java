@@ -73,19 +73,23 @@ public class Configuration {
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
         public static class Mapping {
 
+            private static final String GET_ALL  = "/all";
+            private static final String REGISTER = "/register";
+            private static final String UPDATE   = "/update";
+
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class Admin {
 
                 public static final String ROOT     = "/admin";
-                public static final String REGISTER = "/register";
-                public static final String UPDATE   = "/update";
+                public static final String REGISTER = Mapping.REGISTER;
+                public static final String UPDATE   = Mapping.UPDATE;
             }
 
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class Editor {
 
                 public static final String ROOT   = "/editor";
-                public static final String UPDATE = "/update";
+                public static final String UPDATE = Mapping.UPDATE;
 
             }
 
@@ -93,8 +97,8 @@ public class Configuration {
             public static class Manager {
 
                 public static final String ROOT     = "/manager";
-                public static final String REGISTER = "/register";
-                public static final String UPDATE   = "/update";
+                public static final String REGISTER = Mapping.REGISTER;
+                public static final String UPDATE   = Mapping.UPDATE;
 
             }
 
@@ -102,10 +106,10 @@ public class Configuration {
             public static class Organization {
 
                 public static final String ROOT        = "/organization";
-                public static final String GET_ALL     = "/all";
+                public static final String GET_ALL     = Mapping.GET_ALL;
                 public static final String GET_BY_NAME = "/org_{name}";
-                public static final String REGISTER    = "/register";
-                public static final String UPDATE      = "/update";
+                public static final String REGISTER    = Mapping.REGISTER;
+                public static final String UPDATE      = Mapping.UPDATE;
 
             }
 
@@ -113,11 +117,11 @@ public class Configuration {
             public static class Project {
 
                 public static final String ROOT                    = "/project";
-                public static final String GET_ALL                 = "/all";
+                public static final String GET_ALL                 = Mapping.GET_ALL;
                 public static final String GET_ALL_BY_ORGANIZATION = "/org_{organization}";
                 public static final String GET_BY_NAME             = "/project_{name}_{organization}";
-                public static final String REGISTER                = "/register";
-                public static final String UPDATE                  = "/update";
+                public static final String REGISTER                = Mapping.REGISTER;
+                public static final String UPDATE                  = Mapping.UPDATE;
 
             }
 
@@ -125,7 +129,7 @@ public class Configuration {
             public static class User {
 
                 public static final String ROOT            = "/user";
-                public static final String GET_ALL         = "/all";
+                public static final String GET_ALL         = Mapping.GET_ALL;
                 public static final String GET_BY_USERNAME = "/user_{username}";
                 public static final String LOGIN           = "/login";
 
