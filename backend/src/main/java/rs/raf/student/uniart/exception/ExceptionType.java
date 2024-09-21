@@ -3,9 +3,37 @@ package rs.raf.student.uniart.exception;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import rs.raf.student.uniart.entity.Organization;
 
 @AllArgsConstructor
 public enum ExceptionType implements IException {
+
+    //region Organization Service
+
+    /**
+     * Invoke when there is no <code>Organization</code> with <code>name</code>.<br><br>
+     * Arguments order:
+     * <ol>
+     *   <li>{@link Organization#name}</li>
+     * </ol><br>
+     * Severity: <code>Debug</code> | HttpStatus: <code>Bad Request</code>
+     */
+    FIND_ORGANIZATION_NOT_FOUND_NAME("""
+                                     Could not find organization. Organization with name "{0}" does not exist.\
+                                     """, Severity.DEBUG, HttpStatus.BAD_REQUEST),
+    /**
+     * Invoke when there is no <code>Organization</code> with <code>name</code>.<br><br>
+     * Arguments order:
+     * <ol>
+     *   <li>{@link Organization#name}</li>
+     * </ol><br>
+     * Severity: <code>Debug</code> | HttpStatus: <code>Bad Request</code>
+     */
+    UPDATE_ORGANIZATION_NOT_FOUND_NAME("""
+                                       Could not update organization. Organization with name "{0}" does not exist.\
+                                       """, Severity.DEBUG, HttpStatus.BAD_REQUEST),
+
+    //endregion Organization Service
 
     //region User Service
 

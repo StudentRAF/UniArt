@@ -99,6 +99,17 @@ public class Configuration {
             }
 
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
+            public static class Organization {
+
+                public static final String ROOT        = "/organization";
+                public static final String GET_ALL     = "/all";
+                public static final String GET_BY_NAME = "/org_{name}";
+                public static final String REGISTER    = "/register";
+                public static final String UPDATE      = "/update";
+
+            }
+
+            @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class User {
 
                 public static final String ROOT            = "/user";
