@@ -12,6 +12,8 @@ public enum UserRoleType {
     EDITOR ("Editor" ),
     VIEWER ("Viewer" );
 
+    private static final String rolePrefix = "ROLE_";
+
     private final String name;
 
     public static UserRoleType findRole(String name) {
@@ -20,6 +22,10 @@ public enum UserRoleType {
                 return role;
 
         return VIEWER;
+    }
+
+    public String securityName() {
+        return rolePrefix + name;
     }
 
     @Override

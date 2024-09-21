@@ -12,6 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import rs.raf.student.uniart.security.authentication.SecurityAuthenticationEntryPoint;
 import rs.raf.student.uniart.security.authentication.SecurityAuthenticationManager;
 import rs.raf.student.uniart.security.filter.JwtFilter;
+import rs.raf.student.uniart.utils.SecurityUtilities;
 
 @Configuration
 @EnableMethodSecurity
@@ -30,10 +31,7 @@ public class SecurityConfiguration {
                    .cors(AbstractHttpConfigurer::disable)
                    .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint))
                    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                   .authorizeHttpRequests(authorizeHttp -> {
-                       authorizeHttp.requestMatchers("/api/v1/user/**").permitAll();
-                       authorizeHttp.anyRequest().permitAll(); //TODO: change to authenticated
-                   })
+                   .authorizeHttpRequests(SecurityUtilities.APIv1::authorizeHttpRequests)
                    .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                    .authenticationManager(authenticationManager)
                    .build();

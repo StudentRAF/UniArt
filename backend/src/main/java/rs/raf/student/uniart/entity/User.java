@@ -20,6 +20,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import rs.raf.student.uniart.type.UserRoleType;
 
 import java.text.MessageFormat;
 import java.time.LocalDate;
@@ -266,7 +267,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Set.of(new SimpleGrantedAuthority(userRole.name()));
+        return Set.of(new SimpleGrantedAuthority(UserRoleType.findRole(userRole.name()).securityName()));
     }
 
     @Override

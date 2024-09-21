@@ -6,7 +6,7 @@ import rs.raf.student.uniart.entity.UserRole;
 public class UserRoleMapper {
 
     public static UserRoleGetDto mapDto(UserRole userRole) {
-        return new UserRoleGetDto().name(userRole.name());
+        return new UserRoleGetDto().setName(userRole.name());
     }
 
 }
