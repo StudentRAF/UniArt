@@ -23,8 +23,8 @@ public class AdminController {
 
     private final IAdminService service;
 
-    @PostMapping(Admin.REGISTER)
-    public ResponseEntity<Object> register(@RequestBody @Valid AdminCreateDto createDto) {
+    @PostMapping(Admin.CREATE)
+    public ResponseEntity<Object> create(@RequestBody @Valid AdminCreateDto createDto) {
         return ExceptionUtils.handleResponse(() -> new ResponseEntity<>(service.create(createDto), HttpStatus.OK));
     }
 

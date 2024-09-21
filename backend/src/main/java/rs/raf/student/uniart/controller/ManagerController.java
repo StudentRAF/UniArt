@@ -23,8 +23,8 @@ public class ManagerController {
 
     private final IManagerService service;
 
-    @PostMapping(Manager.REGISTER)
-    public ResponseEntity<Object> register(@RequestBody @Valid ManagerCreateDto createDto) {
+    @PostMapping(Manager.CREATE)
+    public ResponseEntity<Object> create(@RequestBody @Valid ManagerCreateDto createDto) {
         return ExceptionUtils.handleResponse(() -> new ResponseEntity<>(service.create(createDto), HttpStatus.OK));
     }
 

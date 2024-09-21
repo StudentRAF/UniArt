@@ -39,8 +39,8 @@ public class OrganizationController {
         return ExceptionUtils.handleResponse(() -> new ResponseEntity<>(service.findByName(name), HttpStatus.OK));
     }
 
-    @PostMapping(Organization.REGISTER)
-    public ResponseEntity<OrganizationGetDto> register(@RequestBody @Valid OrganizationCreateDto createDto) {
+    @PostMapping(Organization.CREATE)
+    public ResponseEntity<OrganizationGetDto> create(@RequestBody @Valid OrganizationCreateDto createDto) {
         return ExceptionUtils.handleResponse(() -> new ResponseEntity<>(service.create(createDto), HttpStatus.OK));
     }
 

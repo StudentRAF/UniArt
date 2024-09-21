@@ -45,8 +45,8 @@ public class ProjectController {
         return ExceptionUtils.handleResponse(() -> new ResponseEntity<>(service.findByName(name, organization), HttpStatus.OK));
     }
 
-    @PostMapping(Project.REGISTER)
-    public ResponseEntity<ProjectGetDto> register(@RequestBody @Valid ProjectCreateDto createDto) {
+    @PostMapping(Project.CREATE)
+    public ResponseEntity<ProjectGetDto> create(@RequestBody @Valid ProjectCreateDto createDto) {
         return ExceptionUtils.handleResponse(() -> new ResponseEntity<>(service.create(createDto), HttpStatus.OK));
     }
 

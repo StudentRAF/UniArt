@@ -73,22 +73,22 @@ public class Configuration {
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
         public static class Mapping {
 
-            private static final String GET_ALL  = "/all";
-            private static final String REGISTER = "/register";
-            private static final String UPDATE   = "/update";
+            private static final String GET_ALL = "/all";
+            private static final String CREATE  = "/create";
+            private static final String UPDATE  = "/update";
 
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class Admin {
 
-                public static final String ROOT     = "/admin";
-                public static final String REGISTER = Mapping.REGISTER;
-                public static final String UPDATE   = Mapping.UPDATE;
+                public static final String ROOT   = User.ROOT + "/admin";
+                public static final String CREATE = Mapping.CREATE;
+                public static final String UPDATE = Mapping.UPDATE;
             }
 
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class Editor {
 
-                public static final String ROOT   = "/editor";
+                public static final String ROOT   = User.ROOT + "/editor";
                 public static final String UPDATE = Mapping.UPDATE;
 
             }
@@ -96,19 +96,19 @@ public class Configuration {
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class Manager {
 
-                public static final String ROOT     = "/manager";
-                public static final String REGISTER = Mapping.REGISTER;
-                public static final String UPDATE   = Mapping.UPDATE;
+                public static final String ROOT   = User.ROOT + "/manager";
+                public static final String CREATE = Mapping.CREATE;
+                public static final String UPDATE = Mapping.UPDATE;
 
             }
 
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class Organization {
 
-                public static final String ROOT        = "/organization";
+                public static final String ROOT        = "/organizations";
                 public static final String GET_ALL     = Mapping.GET_ALL;
-                public static final String GET_BY_NAME = "/org_{name}";
-                public static final String REGISTER    = Mapping.REGISTER;
+                public static final String GET_BY_NAME = "/organization/{name}";
+                public static final String CREATE      = Mapping.CREATE;
                 public static final String UPDATE      = Mapping.UPDATE;
 
             }
@@ -116,11 +116,11 @@ public class Configuration {
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class Project {
 
-                public static final String ROOT                    = "/project";
+                public static final String ROOT                    = "/projects";
                 public static final String GET_ALL                 = Mapping.GET_ALL;
-                public static final String GET_ALL_BY_ORGANIZATION = "/org_{organization}";
-                public static final String GET_BY_NAME             = "/project_{name}_{organization}";
-                public static final String REGISTER                = Mapping.REGISTER;
+                public static final String GET_ALL_BY_ORGANIZATION = "/organization/{organization}";
+                public static final String GET_BY_NAME             = "/project/{organization}/{name}";
+                public static final String CREATE                  = Mapping.CREATE;
                 public static final String UPDATE                  = Mapping.UPDATE;
 
             }
@@ -128,9 +128,9 @@ public class Configuration {
             @NoArgsConstructor(access = AccessLevel.PRIVATE)
             public static class User {
 
-                public static final String ROOT            = "/user";
+                public static final String ROOT            = "/users";
                 public static final String GET_ALL         = Mapping.GET_ALL;
-                public static final String GET_BY_USERNAME = "/user_{username}";
+                public static final String GET_BY_USERNAME = "/user/{username}";
                 public static final String LOGIN           = "/login";
 
             }
