@@ -60,8 +60,8 @@ public class DocumentAdapter {
          */
         @Override
         public Document deserialize(JsonParser parser, DeserializationContext context) throws IOException, JacksonException {
-            InjectableValuesMapper injectableValues = InjectableValuesMapper.from(context);
-            ObjectMapper           objectMapper     = injectableValues.objectMapper();
+            ObjectMapper           objectMapper     = (ObjectMapper) parser.getCodec();
+            InjectableValuesMapper injectableValues = InjectableValuesMapper.setup(objectMapper);
             Document               document         = new Document();
 
             injectableValues.add(Document.class, document);

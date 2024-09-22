@@ -30,14 +30,12 @@ public class InjectableValuesMapper extends InjectableValues {
         return injectableValuesMapper;
     }
 
-    public static ObjectMapper setup(ObjectMapper objectMapper) {
+    public static InjectableValuesMapper setup(ObjectMapper objectMapper) {
         InjectableValuesMapper injectableValuesMapper = new InjectableValuesMapper(objectMapper);
 
-        return objectMapper.setInjectableValues(injectableValuesMapper);
-    }
+        objectMapper.setInjectableValues(injectableValuesMapper);
 
-    public static ObjectMapper createObjectMapper() {
-        return setup(new ObjectMapper());
+        return injectableValuesMapper;
     }
 
     public InjectableValuesMapper addNamed(String name, Object value) {

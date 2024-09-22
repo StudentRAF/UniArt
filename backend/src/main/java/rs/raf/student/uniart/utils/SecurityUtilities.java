@@ -33,6 +33,9 @@ public class SecurityUtilities {
             authorizeHttp.requestMatchers(Configuration.Controller.Mapping.Organization.ROOT + MATCH_ALL_SUBDIRECTORIES)
                          .authenticated();
 
+            authorizeHttp.requestMatchers(Configuration.Controller.Mapping.Character.ROOT + MATCH_ALL_SUBDIRECTORIES)
+                         .authenticated();
+
             authorizeHttp.anyRequest().denyAll();
         }
 

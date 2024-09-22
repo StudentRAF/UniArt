@@ -83,6 +83,18 @@ public class Configuration {
                 public static final String ROOT   = User.ROOT + "/admin";
                 public static final String CREATE = Mapping.CREATE;
                 public static final String UPDATE = Mapping.UPDATE;
+
+            }
+
+            @NoArgsConstructor(access = AccessLevel.PRIVATE)
+            public static class Character {
+
+                public static final String ROOT               = "/characters";
+                public static final String GET_ALL_BY_PROJECT = "/character/{organization}/{project}";
+                public static final String GET_ONE            = "/character/{organization}/{project}/{name}";
+                public static final String CREATE             = Mapping.CREATE;
+                public static final String UPDATE             = Mapping.UPDATE;
+
             }
 
             @NoArgsConstructor(access = AccessLevel.PRIVATE)

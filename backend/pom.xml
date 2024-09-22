@@ -45,6 +45,11 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.hypersistence</groupId>
+			<artifactId>hypersistence-utils-hibernate-63</artifactId>
+			<version>3.8.2</version>
+		</dependency>
 
 		<!-- Json web token-->
 		<dependency>
@@ -69,7 +74,6 @@
 			<artifactId>guava</artifactId>
 			<version>33.3.0-jre</version>
 		</dependency>
-
 
 		<!-- Utilities -->
 		<dependency>
