@@ -27,6 +27,12 @@ public class SecurityUtilities {
             authorizeHttp.requestMatchers(Configuration.Controller.Mapping.Admin.ROOT + MATCH_ALL_SUBDIRECTORIES)
                          .hasRole(UserRoleType.ADMIN.getName());
 
+            authorizeHttp.requestMatchers(Configuration.Controller.Mapping.Project.ROOT + MATCH_ALL_SUBDIRECTORIES)
+                         .authenticated();
+
+            authorizeHttp.requestMatchers(Configuration.Controller.Mapping.Organization.ROOT + MATCH_ALL_SUBDIRECTORIES)
+                         .authenticated();
+
             authorizeHttp.anyRequest().denyAll();
         }
 
