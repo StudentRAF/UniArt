@@ -2,32 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 @layer base {
-  ::-webkit-scrollbar {
-    @apply w-2.5;
+  * {
+    @apply box-border;
   }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-neutral-800;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-neutral-700 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-neutral-600;
-  }
-
-  #root {
-    @apply flex flex-col min-h-screen;
+  :root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html {
@@ -35,7 +19,12 @@
   }
 
   body {
-    @apply min-h-screen w-screen overflow-x-clip text-neutral-100;
+    @apply min-h-screen w-screen overflow-x-hidden text-neutral-100 scrollbar
+           scrollbar-w-2.5 scrollbar-thumb-neutral-700 scrollbar-track-neutral-800 scrollbar-thumb-rounded-full;
+  }
+
+  #root {
+    @apply flex flex-col min-h-screen;
   }
 
 }
